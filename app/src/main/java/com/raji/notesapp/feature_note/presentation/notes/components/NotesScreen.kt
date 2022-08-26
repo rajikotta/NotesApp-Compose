@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.raji.notesapp.feature_note.presentation.notes.NotesEvent
 import com.raji.notesapp.feature_note.presentation.notes.NotesViewModel
+import com.raji.notesapp.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 
@@ -38,7 +39,9 @@ fun NotesScreen(navController: NavController,
 
     Scaffold(floatingActionButton = {
 
-        FloatingActionButton(onClick = {},
+        FloatingActionButton(onClick = {
+            navController.navigate(Screen.AddEditNoteScreen.route)
+        },
                 backgroundColor = MaterialTheme.colors.primary) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
         }
@@ -65,7 +68,7 @@ fun NotesScreen(navController: NavController,
 
                 OrderSection(modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp), orderChange = {
+                        .padding(vertical = 16.dp), noteOrder = state.noteOrder, orderChange = {
                     viewmodel.onEvent(NotesEvent.Order(it))
                 })
             }
@@ -75,6 +78,7 @@ fun NotesScreen(navController: NavController,
                     NoteItem(note = note, modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
+                                navController.navigate(Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}")
 
                             }, onDeleteClick = {
                         viewmodel.onEvent(NotesEvent.DeleteNote(note))
