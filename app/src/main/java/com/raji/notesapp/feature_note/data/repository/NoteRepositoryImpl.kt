@@ -6,12 +6,12 @@ import com.raji.notesapp.feature_note.domain.repositories.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
 /** * Created by Raji on 22/08/2022. */
-class NoteRepositoryImpl(val dao: NoteDao) : NoteRepository {
+class NoteRepositoryImpl(private val dao: NoteDao) : NoteRepository {
     override fun getNotes(): Flow<List<Note>> {
         return dao.getNotes()
     }
 
-    override suspend fun getNote(id: String): Note? {
+    override suspend fun getNote(id: Int): Note? {
         return dao.getNote(id)
     }
 

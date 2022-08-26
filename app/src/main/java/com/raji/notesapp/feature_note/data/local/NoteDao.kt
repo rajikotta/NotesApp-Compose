@@ -18,5 +18,5 @@ interface NoteDao {
     suspend fun delete(note: Note)
 
     @Query("select * from notes where id LIKE :id")
-    suspend fun getNote(id: String): Note?
+    suspend fun getNote(id: Int): Note?
 }

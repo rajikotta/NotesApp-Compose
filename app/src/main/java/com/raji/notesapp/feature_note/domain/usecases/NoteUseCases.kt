@@ -7,5 +7,6 @@ package com.raji.notesapp.feature_note.domain.usecases
  */
 data class NoteUseCases(val getNoteUseCase: GetNoteUseCase,
                         val deleteNote: DeleteNoteUsecase,
-                        val addNoteUsecase: AddNoteUsecase
+                        val addNoteUsecase: AddNoteUsecase,
+                        val getNoteDetailsUsecase: GetNoteDetailsUsecase
 )
